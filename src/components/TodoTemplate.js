@@ -61,10 +61,19 @@ const TodoTemplate = () => {
     });
   };
 
+  //할일 삭제 처리 함수
+  const removeTodo = (id) => {
+    //주어진 배열의 값들을 순회하여 조건에 맞는 요소들만 모아서 다시 저장
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div className='TodoTemplate'>
       <TodoHeader />
-      <TodoMain todoList={todos} />
+      <TodoMain
+        todoList={todos}
+        remove={removeTodo}
+      />
       <TodoInput addTodo={addTodo} />
     </div>
   );
