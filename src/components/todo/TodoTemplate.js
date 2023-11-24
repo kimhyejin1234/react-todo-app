@@ -106,10 +106,10 @@ const TodoTemplate = () => {
     );
    */
 
-    const newTodo = {
-      id: id,
-      done: !done,
-    };
+    // const newTodo = {
+    //   id: id,
+    //   done: !done,
+    // };
     fetch(API_BASE_URL, {
       method: 'PATCH',
       headers: { 'content-type': 'application/json' },
