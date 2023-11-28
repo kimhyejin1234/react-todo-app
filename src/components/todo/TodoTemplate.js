@@ -47,7 +47,7 @@ const TodoTemplate = () => {
     부모 컴포넌트에서 함수를 선언(매개변수 꼭 선언) -> props로 함수를 전달
     자식 컴포넌트에서 전달받은 함수를 호출하면서 매개값으로 데이터를 전달
   */
-  const addTodo = (todoText) => {
+  const addTodo = async (todoText) => {
     const newTodo = {
       // id: makeNewId(), 이건 test 용으로 생성한 것 . 실제 db 생성에서는 필요 없다.
       title: todoText,
@@ -63,15 +63,24 @@ const TodoTemplate = () => {
     //   return [...oldTodos, newTodo];
     // });
 
-    fetch(API_BASE_URL, {
+    const res = await fetch(API_BASE_URL, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newTodo),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        setTodos(json.todos);
-      });
+    });
+
+    const json = await res.json();
+    setTodos(json.todos);
+
+    // fetch(API_BASE_URL, {
+    //   method: 'POST',
+    //   headers: { 'content-type': 'application/json' },
+    //   body: JSON.stringify(newTodo),
+    // })
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     setTodos(json.todos);
+    //   });
   };
 
   //할일 삭제 처리 함수

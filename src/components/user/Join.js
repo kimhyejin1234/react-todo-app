@@ -234,7 +234,7 @@ const Join = () => {
 
     if (isValid()) {
       //회원 가입 서버 요청
-      fetchSignUpPost(userValue);
+      fetchSignUpPost();
     } else {
       alert('입력란을 다시 확인해 주세요!');
     }
